@@ -1,35 +1,5 @@
-//import Bullet from "./Bullet";
+import Bullet from "./Bullet.js";
 
-class Bullet{
-    constructor(x, y, speed, damage){
-        this.x = x;
-        this.y = y;
-        this.speed = speed;
-        this.damage = damage;
-
-
-        this.width = 5;
-        this.height = 15;
-        this.color = "red";
-    }
-
-    draw(ctx){
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        this.y -= this.speed;
-    }
-
-    collideWith(sprite){
-        if( this.x < sprite.x + sprite.width &&
-            this.x + this.width > sprite.x &&
-            this.y < sprite.y + sprite.height &&
-            this.y + this.height > sprite.y){
-                sprite.takeDamage(this.damage);
-                return true;
-            }
-        return false;
-    }
-}
 
 export default class bulletController{
     bullets = [];
@@ -56,15 +26,15 @@ export default class bulletController{
         });
     }
 
-    collideWith(sprite){
-        return this.bullets.some(bullet=>{
-            if(bullet.collideWith(sprite)){
-                this.bullets.splice(this.bullets.indexOf(bullet), 1);
-                return true;
-            }
-            return false;
+    collideWith(sprite) {
+        return this.bullets.some((bullet) => {
+          if (bullet.collideWith(sprite)) {
+            this.bullets.splice(this.bullets.indexOf(bullet), 1);
+            return true;
+          }
+          return false;
         });
-    }
+      }
 
     isBulletOffScreen(bullet){
         return bullet.y <= -bullet.height;
