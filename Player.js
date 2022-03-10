@@ -2,11 +2,13 @@ export default class Player{
     constructor(x, y, bulletController){
         this.x = x;
         this.y = y;
-        this.radius = 25
+        this.health = 15;
+        this.radius = 25;
         this.bulletController = bulletController;
         this.width = 50;
         this.height = 50;
         this.speed = 6;
+        this.started = false;
 
         document.addEventListener("keydown", this.keydown);
         document.addEventListener("keyup", this.keyup);
@@ -73,6 +75,10 @@ export default class Player{
         
     }
 
+    takeDamage(damage){
+        this.health -= damage;
+    }
+
     keydown = (e) => {
         if(e.code === "ArrowUp" | e.code === "KeyW"){
             this.upPressed = true;
@@ -106,6 +112,9 @@ export default class Player{
         }
         if(e.code === "Space"){
             this.shootPressed = false;
+        }
+        if(e.code === "KeyP"){
+            this.started = true;
         }
     }
 }

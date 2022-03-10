@@ -18,4 +18,11 @@ body{
     font-size: 2.9em;
     color: lightgrey;
   }
+
+  h3{
+    margin: 0px;
+    margin-bottom: 10px;
+    font-size: 2.9em;
+    color: rgb(185, 147, 147);
+  }
   
