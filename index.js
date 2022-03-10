@@ -19,16 +19,7 @@ const enemies = [
     new Enemy(250, 100, "blue", 5),
 ];
 
-function centerLine(){
-    ctx.strokeStyle = 'red';
-    ctx.lineWidth = 5;
 
-    // draw a red line
-    ctx.beginPath();
-    ctx.moveTo(0, 300);
-    ctx.lineTo(550, 300);
-    ctx.stroke();
-}
 
 function gameLoop(){
     setCommonStyle();
@@ -43,13 +34,26 @@ function gameLoop(){
     
     enemies.forEach((enemy)=>{
         if(bulletController.collideWith(enemy)){
-            const index = enemies.indexOf(enemy);
-            enemies.splice(index, 1);
+            if(enemy.health < 1){
+                const index = enemies.indexOf(enemy);
+                enemies.splice(index, 1);
+            }
         }
         else{
             enemy.draw(ctx);
         }
     });
+}
+
+function centerLine(){
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 5;
+
+    // draw a red line
+    ctx.beginPath();
+    ctx.moveTo(0, 300);
+    ctx.lineTo(550, 300);
+    ctx.stroke();
 }
 
 function setCommonStyle(){
